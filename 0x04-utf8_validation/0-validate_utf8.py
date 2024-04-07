@@ -13,26 +13,21 @@ def validUTF8(data):
     num_bytes = 0
 
     for byte in data:
-        # Check if the byte is the start of a new UTF-8 character
         if num_bytes == 0:
-            # Count the number of leading 1s to determine the number of bytes
-            if byte >> 7 == 0b0:  # 1-byte character
+            if byte >> 7 == 0b0:
                 num_bytes = 0
-            elif byte >> 5 == 0b110:  # 2-byte character
+            elif byte >> 5 == 0b110:
                 num_bytes = 1
-            elif byte >> 4 == 0b1110:  # 3-byte character
+            elif byte >> 4 == 0b1110:
                 num_bytes = 2
-            elif byte >> 3 == 0b11110:  # 4-byte character
+            elif byte >> 3 == 0b11110:
                 num_bytes = 3
             else:
-                return False  # Invalid start byte
-
+                return False
         else:
-            # Check if the byte is a continuation byte
             if byte >> 6 == 0b10:
                 num_bytes -= 1
             else:
-                return False  # Invalid continuation byte
+                return False
 
-    # Check if all bytes have been consumed (i.e., num_bytes == 0)
     return num_bytes == 0
