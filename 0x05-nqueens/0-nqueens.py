@@ -12,12 +12,10 @@ def is_safe(board, row, col, N):
         if board[i][col] == 1:
             return False
 
-    """Check upper diagonal on left side"""
     for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
         if board[i][j] == 1:
             return False
 
-    """Check upper diagonal on right side"""
     for i, j in zip(range(row, -1, -1), range(col, N)):
         if board[i][j] == 1:
             return False
