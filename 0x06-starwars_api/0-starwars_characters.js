@@ -35,6 +35,6 @@ const args = process.argv.slice(2);
 if (args.length !== 1) {
   console.log('Usage: node script.js <movieId>');
 } else {
-  const movieId = process.argv[2];
+  const movieId = args[0];
   getMovieCharacters(movieId);
 }
